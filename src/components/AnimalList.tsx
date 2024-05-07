@@ -17,17 +17,24 @@ const animals: Animal[] = [
 const AnimalList: FC = () => {
   const [list, setList] = useState(animals);
 
+  const remove=(index:number)=>{
+    const newLis=list.filter((animal,i)=>{return i!==index})
+    setList(newLis);
+  }
+
+
   return (
-    <div>
+    <div className="animalZoo">
       <table>
         <th>
           <tr>
             <td>vrsta</td>
             <td>ime</td>
             <td>datumRodjenja</td>
+            <td></td>
           </tr>
         </th>
-        {list.map((animal: Animal) => (
+        {list.map((animal: Animal,index) => (
           <tr>
             <td>{animal.vrsta}</td>
             <td>{animal.ime}</td>
@@ -36,6 +43,7 @@ const AnimalList: FC = () => {
                 ? animal.datumRodjenja.toISOString()
                 : "Nepoznat"}
             </td>
+            <td><button onClick={()=>remove(index)}>ukloni</button></td>
           </tr>
         ))}
       </table>

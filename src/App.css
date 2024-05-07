@@ -1,3 +1,8 @@
+.animalZoo {
+  display: flex;
+  justify-content: center;
+}
+
 table {
   display: grid;
   grid-template-columns: 3,1fr;
