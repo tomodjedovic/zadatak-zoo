@@ -22,6 +22,12 @@ const AnimalList: FC = () => {
     setList(newLis);
   }
 
+  const moveToTop=(index:number)=>{
+    const newAnimals= list.filter((animal:Animal,i:number)=>{return i===index});
+    list.forEach((animal:Animal,i:number)=>i !== index ? newAnimals.push(animal):animal);
+    setList(newAnimals)
+  }
+
 
   return (
     <div className="animalZoo">
@@ -43,7 +49,10 @@ const AnimalList: FC = () => {
                 ? animal.datumRodjenja.toISOString()
                 : "Nepoznat"}
             </td>
-            <td><button onClick={()=>remove(index)}>ukloni</button></td>
+            <td>
+                <button onClick={()=>remove(index)}>ukloni</button>
+                <button onClick={()=>moveToTop(index)}> move to top</button>
+            </td>
           </tr>
         ))}
       </table>
